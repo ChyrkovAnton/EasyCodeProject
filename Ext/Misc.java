@@ -1,5 +1,9 @@
 package project.Ext;
 
+import project.Group;
+import project.Mark;
+import project.Student;
+
 import java.util.Calendar;
 
 public final class Misc {
@@ -40,4 +44,22 @@ public final class Misc {
                 + monthSubstituteText + calendar.get(Calendar.MONTH) + "."
                 + calendar.get(Calendar.YEAR);
     }
+    public static double averageGroupMark (Group group){
+        double sumOfMarks = 0;
+        double quantityOfMarks = 0;
+        double result = 0;
+        for (Student student : group.getStudents()) {
+            for (Mark mark : student.getMarks()) {
+                sumOfMarks += mark.getMark();
+                quantityOfMarks ++;
+            }
+        }
+        if (quantityOfMarks == 0){
+            System.out.println("There is not any mark ");
+        }else {
+            result = sumOfMarks / quantityOfMarks;
+        }
+        return result;
+    }
+
 }

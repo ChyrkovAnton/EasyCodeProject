@@ -12,18 +12,20 @@ public class Student{
     private Calendar dateOfBirth;
     private String gender;
     private String id;
+    private boolean isActive;
     private Mark [] marks;
 
-    public Student(String name, String surname, String patronymic, Calendar dateOfBirth, String gender, String id) {
+    public Student(String name, String surname, String patronymic, Calendar dateOfBirth, String gender, String id, boolean isActive) {
         this.name = name;
         this.surname = surname;
         this.patronymic = patronymic;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.id = id;
+        this.isActive = isActive;
     }
 
-    public Student(String name, String surname, String patronymic, Calendar dateOfBirth, String gender, String id, Mark [] marks) {
+    public Student(String name, String surname, String patronymic, Calendar dateOfBirth, String gender, String id, boolean isActive, Mark [] marks) {
         this.name = name;
         this.surname = surname;
         this.patronymic = patronymic;
@@ -31,6 +33,7 @@ public class Student{
         this.gender = gender;
         this.id = id;
         this.marks = marks;
+        this.isActive = isActive;
     }
 
     public Student() {
@@ -40,6 +43,7 @@ public class Student{
         this.dateOfBirth = null;
         this.gender = "";
         this.id = "";
+        this.isActive = false;
     }
 
     public String getName() {
@@ -98,9 +102,17 @@ public class Student{
         this.marks = marks;
     }
 
+    public boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(boolean active) {
+        isActive = active;
+    }
+
     @Override
     public String toString (){
-        return id + ", " + name + ", " + surname + ", " + patronymic + ", " + gender + ", "
+        return id + ", " + name + ", " + patronymic + ", " + surname + ", " + gender + ", "
                 + dateOfBirth.get(Calendar.DAY_OF_MONTH) + "." + dateOfBirth.get(Calendar.MONTH) + "."
                 + dateOfBirth.get(Calendar.YEAR);
     }
@@ -112,6 +124,7 @@ public class Student{
 
         Student student = (Student) o;
 
+        if (isActive != student.isActive) return false;
         if (name != null ? !name.equals(student.name) : student.name != null) return false;
         if (surname != null ? !surname.equals(student.surname) : student.surname != null) return false;
         if (patronymic != null ? !patronymic.equals(student.patronymic) : student.patronymic != null) return false;
@@ -130,6 +143,7 @@ public class Student{
         result = 31 * result + (dateOfBirth != null ? dateOfBirth.hashCode() : 0);
         result = 31 * result + (gender != null ? gender.hashCode() : 0);
         result = 31 * result + (id != null ? id.hashCode() : 0);
+        result = 31 * result + (isActive ? 1 : 0);
         result = 31 * result + Arrays.hashCode(marks);
         return result;
     }
