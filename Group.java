@@ -2,24 +2,21 @@ package project;
 
 
 import java.util.Arrays;
-import java.util.Calendar;
 
 public class Group {
     private String name;
     private String faculty;
-    private String startYear;
+    private int startYear;
     private Student [] students;
     private HomeWork [] homeWorks;
 
-    public Group(String name, String faculty, String startYear) {
+    public Group(String name, String faculty, int startYear) {
         this.name = name;
         this.faculty = faculty;
         this.startYear = startYear;
     }
     public Group() {
-        this.name = "";
-        this.faculty = "";
-        this.startYear = "";
+
     }
 
     public String getName() {
@@ -38,11 +35,11 @@ public class Group {
         this.faculty = faculty;
     }
 
-    public String getStartYear() {
+    public int getStartYear() {
         return startYear;
     }
 
-    public void setStartYear(String startYear) {
+    public void setStartYear(int startYear) {
         this.startYear = startYear;
     }
     @Override
@@ -74,35 +71,23 @@ public class Group {
 
         Group group = (Group) o;
 
-        if (name != null ? !name.equals(group.name) : group.name != null) return false;
-        if (faculty != null ? !faculty.equals(group.faculty) : group.faculty != null) return false;
-        if (startYear != null ? !startYear.equals(group.startYear) : group.startYear != null) return false;
+        if (getStartYear() != group.getStartYear()) return false;
+        if (getName() != null ? !getName().equals(group.getName()) : group.getName() != null) return false;
+        if (getFaculty() != null ? !getFaculty().equals(group.getFaculty()) : group.getFaculty() != null) return false;
         // Probably incorrect - comparing Object[] arrays with Arrays.equals
-        if (!Arrays.equals(students, group.students)) return false;
+        if (!Arrays.equals(getStudents(), group.getStudents())) return false;
         // Probably incorrect - comparing Object[] arrays with Arrays.equals
-        return Arrays.equals(homeWorks, group.homeWorks);
+        return Arrays.equals(getHomeWorks(), group.getHomeWorks());
     }
 
     @Override
     public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (faculty != null ? faculty.hashCode() : 0);
-        result = 31 * result + (startYear != null ? startYear.hashCode() : 0);
-        result = 31 * result + Arrays.hashCode(students);
-        result = 31 * result + Arrays.hashCode(homeWorks);
+        int result = getName() != null ? getName().hashCode() : 0;
+        result = 31 * result + (getFaculty() != null ? getFaculty().hashCode() : 0);
+        result = 31 * result + getStartYear();
+        result = 31 * result + Arrays.hashCode(getStudents());
+        result = 31 * result + Arrays.hashCode(getHomeWorks());
         return result;
-    }
-
-    public void studentsMarks (){
-        for (Student student : students) {
-            student.studentMarks();
-        }
-    }
-
-    public void studentsAverageMarks (){
-        for (Student student : students) {
-            System.out.println(student.getStudentShortNameAndId() + " - " + student.averageMark());
-        }
     }
 
     public Student getBestStudent (){
@@ -154,7 +139,21 @@ public class Group {
 
         return studentsOut;
     }
-
-
-
+    public double averageGroupMark (){
+        double sumOfMarks = 0;
+        double quantityOfMarks = 0;
+        double result = 0;
+        for (Student student : getStudents()) {
+            for (Mark mark : student.getMarks()) {
+                sumOfMarks += mark.getMark();
+                quantityOfMarks ++;
+            }
+        }
+        if (quantityOfMarks == 0){
+            System.out.println("There is not any mark ");
+        }else {
+            result = sumOfMarks / quantityOfMarks;
+        }
+        return result;
+    }
 }

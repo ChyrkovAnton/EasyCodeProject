@@ -1,11 +1,10 @@
 package project;
 
-import project.Ext.Filter;
-import project.Ext.Misc;
 
-//import project.Ext.IsActiveFilter;
 
-import java.util.Arrays;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Random;
 
@@ -55,7 +54,7 @@ public class Application {
 
         group.setName("Java");
         group.setFaculty("EasyCode");
-        group.setStartYear("2016");
+        group.setStartYear(2016);
         group.setStudents(students);
         group.setHomeWorks(homeWorks);
 
@@ -81,13 +80,13 @@ public class Application {
         //        (group.getStudents(), new Student[group.getStudents().length], 3.7)));
         //System.out.println(Arrays.deepToString(group.studentsListWithAverageMarkOverSpecified
         //                                      (group.getStudents(), new Student[group.getStudents().length], 3.7, 0)));
-        //group.studentsMarks();
+        /*group.studentsMarks();
 
         Filter filter = new Filter();
         Filter.IsAverageOverFour fc = filter.new IsAverageOverFour();
         group.studentsAverageMarks();
         System.out.println(Misc.averageGroupMark(group));
-        System.out.println(Arrays.deepToString(Filter.applyFilter(group.getStudents(), fc)));
+        System.out.println(Arrays.deepToString(Filter.applyFilter(group.getStudents(), fc)));*/
 
         //five random students
         /*System.out.println(Arrays.deepToString(filter.chooseHappyFive(group.getStudents(), new FilterCriterion() {
@@ -101,5 +100,7 @@ public class Application {
                                 return isTrue;
                             }
         })));*/
+
+
     }
 }

@@ -6,11 +6,11 @@ import java.util.GregorianCalendar;
 
 public class HomeWork {
 
-    String number;
-    String topic;
-    String header;
-    String homeWorkText;
-    GregorianCalendar completionDate;
+    private String number;
+    private String topic;
+    private String header;
+    private String homeWorkText;
+    private GregorianCalendar completionDate;
 
 
     public HomeWork(String number, String topic, String header, String homeWorkText, GregorianCalendar completionDate) {
@@ -26,7 +26,7 @@ public class HomeWork {
         this.topic = "";
         this.header = "";
         this.homeWorkText = "";
-        this.completionDate = new GregorianCalendar(2020, 12, 30);
+        this.completionDate = new GregorianCalendar(2017, 1, 30);
     }
 
     public String getNumber() {

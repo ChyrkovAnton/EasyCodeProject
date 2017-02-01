@@ -6,27 +6,27 @@ import java.util.GregorianCalendar;
 
 public class Mark {
 
-    private GregorianCalendar date;
+    private Calendar dateOfMark;
     private HomeWork homeWork;
     private int mark;
 
-    public Mark(GregorianCalendar date, HomeWork homeWork, int mark) {
-        this.date = date;
+    public Mark(Calendar date, HomeWork homeWork, int mark) {
+        this.dateOfMark = date;
         this.homeWork = homeWork;
-        this.mark = mark;
+        if (mark > 0){
+            this.mark = mark;
+        }
     }
     public Mark() {
-        this.date = null;
-        this.homeWork = null;
-        this.mark = 0;
+
     }
 
-    public GregorianCalendar getDate() {
-        return date;
+    public Calendar getDate() {
+        return dateOfMark;
     }
 
-    public void setDate(GregorianCalendar date) {
-        this.date = date;
+    public void setDate(Calendar date) {
+        this.dateOfMark = date;
     }
 
     public HomeWork getHomeWork() {
@@ -34,6 +34,7 @@ public class Mark {
     }
 
     public void setHomeWork(HomeWork homeWork) {
+
         this.homeWork = homeWork;
     }
 
@@ -42,13 +43,15 @@ public class Mark {
     }
 
     public void setMark(int mark) {
-        this.mark = mark;
+        if (mark > 0) {
+            this.mark = mark;
+        }
     }
 
     @Override
     public String toString() {
-        return "Mark{" + "date=" + date.get(Calendar.DAY_OF_MONTH) + "." + date.get(Calendar.MONTH) + "."
-                + date.get(Calendar.YEAR) + ", homeWork=" + homeWork + ", mark=" + mark + '}';
+        return "Mark{" + "date=" + dateOfMark.get(Calendar.DAY_OF_MONTH) + "." + dateOfMark.get(Calendar.MONTH) + "."
+                + dateOfMark.get(Calendar.YEAR) + ", homeWork=" + homeWork + ", mark=" + mark + '}';
     }
 
     @Override
@@ -59,13 +62,13 @@ public class Mark {
         Mark mark1 = (Mark) o;
 
         if (mark != mark1.mark) return false;
-        if (!date.equals(mark1.date)) return false;
+        if (!dateOfMark.equals(mark1.dateOfMark)) return false;
         return homeWork.equals(mark1.homeWork);
     }
 
     @Override
     public int hashCode() {
-        int result = date.hashCode();
+        int result = dateOfMark.hashCode();
         result = 31 * result + homeWork.hashCode();
         result = 31 * result + mark;
         return result;

@@ -7,22 +7,17 @@ import java.util.Calendar;
 public class Document {
 
     private String documentHolderID;
-    private String documentKind;
+    private DocumentTypes documentKind;
     private String documentSeries;
     private String documentNumber;
     private Calendar documentDateOfIssue;
     private String documentIssuingAuthority;
 
     public Document() {
-        this.documentHolderID = null;
-        this.documentKind = null;
-        this.documentSeries = null;
-        this.documentNumber = null;
-        this.documentDateOfIssue = null;
-        this.documentIssuingAuthority = null;
+
     }
 
-    public Document(String documentHolderID, String documentKind, String documentSeries,
+    public Document(String documentHolderID, DocumentTypes documentKind, String documentSeries,
                     String documentNumber, Calendar documentDateOfIssue, String documentIssuingAuthority) {
         this.documentHolderID = documentHolderID;
         this.documentKind = documentKind;
@@ -40,11 +35,11 @@ public class Document {
         this.documentHolderID = documentHolderID;
     }
 
-    public String getDocumentKind() {
+    public DocumentTypes getDocumentKind() {
         return documentKind;
     }
 
-    public void setDocumentKind(String documentKind) {
+    public void setDocumentKind(DocumentTypes documentKind) {
         this.documentKind = documentKind;
     }
 

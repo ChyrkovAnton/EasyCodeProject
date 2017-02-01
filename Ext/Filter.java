@@ -9,7 +9,7 @@ public class Filter {
 
     public static Student [] applyFilter (Student [] students, FilterCriterion filter){
 
-        ArrayList<Student> studentsArray = new ArrayList<>();
+        ArrayList <Student> studentsArray = new ArrayList<>();
         ArrayList <Student> studentsToRemove = new ArrayList <>();
         Student [] filteredStudents;
 
@@ -20,7 +20,7 @@ public class Filter {
 
         //Fills studentsToRemove ArrayList with unnecessary students
         for (Student student : studentsArray) {
-            if (!filter.isTrue(student)){
+            if (!filter.isSuitable(student)){
                 studentsToRemove.add(student);
             }
         }
@@ -47,7 +47,7 @@ public class Filter {
         //Fills happyStudents ArrayList with random students
         while (happyStudents.size() < 5){
             for (Student student : studentsArray) {
-                if (filter.isTrue(student) && !happyStudents.contains(student)){
+                if (filter.isSuitable(student) && !happyStudents.contains(student)){
                     happyStudents.add(student);
                 }
             }
@@ -61,38 +61,24 @@ public class Filter {
     public class IsActiveFilter implements FilterCriterion{
 
         @Override
-        public boolean isTrue(Student student) {
-            boolean isActive = false;
-            if (student.getIsActive()){
-                isActive = true;
-            }
-            return isActive;
+        public boolean isSuitable(Student student) {
+            return student.getIsActive();
         }
     }
     public class IsAverageOverFour implements FilterCriterion{
 
         @Override
-        public boolean isTrue(Student student) {
-            boolean isActive = false;
-            if (student.averageMark() > 4){
-                isActive = true;
-            }
-            return isActive;
+        public boolean isSuitable(Student student) {
+            return student.averageMark() > 4;
         }
     }
 
     public class IsAverageLessFour implements FilterCriterion{
 
         @Override
-        public boolean isTrue(Student student) {
-            boolean isActive = false;
-            if (student.averageMark() < 4){
-                isActive = true;
-            }
-            return isActive;
+        public boolean isSuitable(Student student) {
+            return student.averageMark() < 4;
         }
     }
-
-
 
 }

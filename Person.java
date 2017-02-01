@@ -2,9 +2,12 @@ package project;
 
 import project.Ext.Misc;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
-public class Person {
+public abstract class Person {
 
     private String name;
     private String surname;
@@ -12,6 +15,12 @@ public class Person {
     private Calendar dateOfBirth;
     private String gender;
     private String id;
+    private ArrayList<Document> documents;
+    private ArrayList<Address> addresses;
+
+    public Person (){
+
+    }
 
     public Person(String name, String surname, String patronymic, Calendar dateOfBirth, String gender, String id) {
         this.name = name;
@@ -20,6 +29,18 @@ public class Person {
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.id = id;
+    }
+
+    public Person(String name, String surname, String patronymic, Calendar dateOfBirth, String gender, String id,
+                  ArrayList<Document> documents, ArrayList<Address> addresses) {
+        this.name = name;
+        this.surname = surname;
+        this.patronymic = patronymic;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.id = id;
+        this.documents = documents;
+        this.addresses = addresses;
     }
 
     public String getName() {
@@ -70,13 +91,30 @@ public class Person {
         this.id = id;
     }
 
+    public ArrayList<Document> getDocuments() {
+        return documents;
+    }
+
+    public void setDocuments(ArrayList<Document> documents) {
+        this.documents = documents;
+    }
+
+    public ArrayList<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(ArrayList<Address> addresses) {
+        this.addresses = addresses;
+    }
+
     @Override
     public String toString() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         return "Person{" +
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", patronymic='" + patronymic + '\'' +
-                ", dateOfBirth=" + Misc.calendarToString(dateOfBirth) +
+                ", dateOfBirth=" + sdf.format(dateOfBirth.getTime()) +
                 ", gender='" + gender + '\'' +
                 ", id='" + id + '\'' +
                 '}';
@@ -89,22 +127,30 @@ public class Person {
 
         Person person = (Person) o;
 
-        if (name != null ? !name.equals(person.name) : person.name != null) return false;
-        if (surname != null ? !surname.equals(person.surname) : person.surname != null) return false;
-        if (patronymic != null ? !patronymic.equals(person.patronymic) : person.patronymic != null) return false;
-        if (dateOfBirth != null ? !dateOfBirth.equals(person.dateOfBirth) : person.dateOfBirth != null) return false;
-        if (gender != null ? !gender.equals(person.gender) : person.gender != null) return false;
-        return id != null ? id.equals(person.id) : person.id == null;
+        if (getName() != null ? !getName().equals(person.getName()) : person.getName() != null) return false;
+        if (getSurname() != null ? !getSurname().equals(person.getSurname()) : person.getSurname() != null)
+            return false;
+        if (getPatronymic() != null ? !getPatronymic().equals(person.getPatronymic()) : person.getPatronymic() != null)
+            return false;
+        if (getDateOfBirth() != null ? !getDateOfBirth().equals(person.getDateOfBirth()) : person.getDateOfBirth() != null)
+            return false;
+        if (getGender() != null ? !getGender().equals(person.getGender()) : person.getGender() != null) return false;
+        if (getId() != null ? !getId().equals(person.getId()) : person.getId() != null) return false;
+        if (getDocuments() != null ? !getDocuments().equals(person.getDocuments()) : person.getDocuments() != null)
+            return false;
+        return getAddresses() != null ? getAddresses().equals(person.getAddresses()) : person.getAddresses() == null;
     }
 
     @Override
     public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (surname != null ? surname.hashCode() : 0);
-        result = 31 * result + (patronymic != null ? patronymic.hashCode() : 0);
-        result = 31 * result + (dateOfBirth != null ? dateOfBirth.hashCode() : 0);
-        result = 31 * result + (gender != null ? gender.hashCode() : 0);
-        result = 31 * result + (id != null ? id.hashCode() : 0);
+        int result = getName() != null ? getName().hashCode() : 0;
+        result = 31 * result + (getSurname() != null ? getSurname().hashCode() : 0);
+        result = 31 * result + (getPatronymic() != null ? getPatronymic().hashCode() : 0);
+        result = 31 * result + (getDateOfBirth() != null ? getDateOfBirth().hashCode() : 0);
+        result = 31 * result + (getGender() != null ? getGender().hashCode() : 0);
+        result = 31 * result + (getId() != null ? getId().hashCode() : 0);
+        result = 31 * result + (getDocuments() != null ? getDocuments().hashCode() : 0);
+        result = 31 * result + (getAddresses() != null ? getAddresses().hashCode() : 0);
         return result;
     }
 }
